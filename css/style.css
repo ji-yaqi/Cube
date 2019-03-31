@@ -1,0 +1,37 @@
+.dot.microsoft {
+  fill: red;
+}
+
+.microsoft {
+  stroke: red;
+}
+
+.dot.amazon{
+  fill: lightgreen;
+}
+.amazon{
+  stroke: lightgreen;
+}
+
+.dot.facebook {
+  fill: pink;
+}
+.facebook {
+  stroke: pink;
+}
+
+.dot.google{
+  fill: blue;
+}
+
+.google{
+  stroke: blue;
+}
+
+.dot.apple{
+  fill: orange;
+}
+
+.apple{
+  stroke: orange;
+}

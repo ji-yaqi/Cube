@@ -1,8 +1,7 @@
 var data = [];
-
+var overall_svg;
 d3.csv("data/employee_reviews.csv", function(allData) {
 
-  console.log(allData);
   for (var i = 0; i < allData.length; i++) {
     var d = allData[i];
     var review = {
@@ -21,16 +20,147 @@ d3.csv("data/employee_reviews.csv", function(allData) {
     };
     data[i] = review;
   }
-  console.log(data);
+
+  // TODO: Replace with real data.
+  // Fake data :
+  var averageData = [
+    {
+      name: "microsoft",
+      overall_r: 4.5,
+      balance_r: 5,
+      culture_r: 4,
+      career_r: 3,
+      benefit_r: 4,
+      senior_r: 2
+    },
+    {
+      name: "google",
+      overall_r: 4,
+      balance_r: 5,
+      culture_r: 4,
+      career_r: 5,
+      benefit_r: 4,
+      senior_r: 3
+    },
+    {
+      name: "facebook",
+      overall_r: 3,
+      balance_r: 2,
+      culture_r: 4,
+      career_r: 5,
+      benefit_r: 5,
+      senior_r: 5
+    },
+    {
+      name: "amazon",
+      overall_r: 2,
+      balance_r: 2.3,
+      culture_r: 4,
+      career_r: 5,
+      benefit_r: 3,
+      senior_r: 2
+    }
+  ];
+
+  plotOverallRating(averageData);
 
   function getCity(location){
-    console.log(location.split(",")[0]);
     return location.split(",")[0];
   }
 
   function getState(location){
-    console.log(location.split(",")[1]);
     return location.split(",")[1];
   }
 
 });
+
+function plotOverallRating(data){
+  console.log(data);
+
+  overall_svg = d3.select("#overall_rating")
+                            .append("svg")
+                            .attr("width",1000)
+                            .attr("height",1000);
+
+  drawCompanyDots("overall", data);
+  drawCompanyDots("balance", data);
+  drawCompanyDots("culture", data);
+  drawCompanyDots("career", data);
+  drawCompanyDots("benefit", data);
+  drawCompanyDots("senior", data);
+
+  // draw links
+  drawCompanyLinkPath("amazon");
+  drawCompanyLinkPath("microsoft");
+  drawCompanyLinkPath("facebook");
+  drawCompanyLinkPath("apple");
+  drawCompanyLinkPath("google");
+}
+
+function drawCompanyDots(aspect,data){
+  overall_svg.append("g")
+             .selectAll(".dot")
+             .data(data)
+             .enter()
+             .append("circle")
+             .attr("class", function(d){
+               return "dot " + d.name;
+             })
+             .attr("r", 8)
+             .attr("cx",function(d){
+               switch (aspect){
+                  case "senior":
+                    return 360;
+                  case "benefit":
+                    return 300;
+                  case "career":
+                    return 240;
+                  case "culture":
+                    return 180;
+                  case "overall":
+                    return 60;
+                  case "balance":
+                    return 120;
+               }
+             })
+             .attr("cy",function(d){
+               switch (aspect){
+                  case "senior":
+                    return d.senior_r * 40;
+                  case "benefit":
+                    return d.benefit_r * 40;
+                  case "career":
+                    return d.career_r * 40;
+                  case "culture":
+                    return d.culture_r * 40;
+                  case "overall":
+                    return d.overall_r * 40;
+                  case "balance":
+                    return d.balance_r * 40;
+               }
+             });
+}
+
+function drawCompanyLinkPath(companyName){
+  var groups = overall_svg.selectAll("."+companyName)._groups[0];
+  var dots = [];
+  for (var i=0;i<groups.length;i++){
+    var xy = {
+      "x":groups[i].getAttribute("cx"),
+      "y":groups[i].getAttribute("cy")
+    };
+    dots.push(xy);
+  }
+
+  // https://www.dashingd3js.com/svg-paths-and-d3js
+  var lineFunction = d3.line()
+    .x(function(d) { return d.x; })
+    .y(function(d) { return d.y; })
+    .curve(d3.curveLinear);
+
+  overall_svg.append("path")
+             .attr("d", lineFunction(dots))
+             .attr("class", companyName)
+             .attr("fill", "none");
+
+}
