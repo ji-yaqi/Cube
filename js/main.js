@@ -23,6 +23,7 @@ d3.csv("data/employee_reviews.csv", function(allData) {
   }
 
   //Companies with averaged rating.
+  //Reference: https://stackoverflow.com/questions/51040651/group-by-in-javascript-using-reduce
   var reducedData = data.reduce(function(m, d){
       if(!m[d.company]){
         m[d.company] = {
