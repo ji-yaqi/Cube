@@ -35,3 +35,10 @@
 .apple{
   stroke: orange;
 }
+
+.dot.netflix{
+  fill:lightblue;
+}
+.netflix {
+  stroke: lightblue;
+}

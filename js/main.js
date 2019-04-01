@@ -59,45 +59,45 @@ d3.csv("data/employee_reviews.csv", function(allData) {
        }
   });
   console.log(averageData)
-  // Fake data :
-  var averageData = [
-    {
-      name: "microsoft",
-      overall_r: 4.5,
-      balance_r: 5,
-      culture_r: 4,
-      career_r: 3,
-      benefit_r: 4,
-      senior_r: 2
-    },
-    {
-      name: "google",
-      overall_r: 4,
-      balance_r: 5,
-      culture_r: 4,
-      career_r: 5,
-      benefit_r: 4,
-      senior_r: 3
-    },
-    {
-      name: "facebook",
-      overall_r: 3,
-      balance_r: 2,
-      culture_r: 4,
-      career_r: 5,
-      benefit_r: 5,
-      senior_r: 5
-    },
-    {
-      name: "amazon",
-      overall_r: 2,
-      balance_r: 2.3,
-      culture_r: 4,
-      career_r: 5,
-      benefit_r: 3,
-      senior_r: 2
-    }
-  ];
+  // // Fake data :
+  // var averageData = [
+  //   {
+  //     name: "microsoft",
+  //     overall_r: 4.5,
+  //     balance_r: 5,
+  //     culture_r: 4,
+  //     career_r: 3,
+  //     benefit_r: 4,
+  //     senior_r: 2
+  //   },
+  //   {
+  //     name: "google",
+  //     overall_r: 4,
+  //     balance_r: 5,
+  //     culture_r: 4,
+  //     career_r: 5,
+  //     benefit_r: 4,
+  //     senior_r: 3
+  //   },
+  //   {
+  //     name: "facebook",
+  //     overall_r: 3,
+  //     balance_r: 2,
+  //     culture_r: 4,
+  //     career_r: 5,
+  //     benefit_r: 5,
+  //     senior_r: 5
+  //   },
+  //   {
+  //     name: "amazon",
+  //     overall_r: 2,
+  //     balance_r: 2.3,
+  //     culture_r: 4,
+  //     career_r: 5,
+  //     benefit_r: 3,
+  //     senior_r: 2
+  //   }
+  // ];
 
   plotOverallRating(averageData);
 
@@ -132,6 +132,21 @@ function plotOverallRating(data){
   drawCompanyLinkPath("facebook");
   drawCompanyLinkPath("apple");
   drawCompanyLinkPath("google");
+  drawCompanyLinkPath("netflix");
+
+  // plot axis
+  var scale = d3.scaleLinear()
+              .domain([0, 5])
+              .range([400, 100]);
+
+  var y_axis = d3.axisLeft()
+              .scale(scale);
+
+  overall_svg.append("g")
+   .attr("transform", "translate(50, 10)")
+   .call(y_axis);
+
+
 }
 
 function drawCompanyDots(aspect,data){
@@ -141,7 +156,7 @@ function drawCompanyDots(aspect,data){
              .enter()
              .append("circle")
              .attr("class", function(d){
-               return "dot " + d.name;
+               return "dot " + d.company;
              })
              .attr("r", 8)
              .attr("cx",function(d){
@@ -163,17 +178,17 @@ function drawCompanyDots(aspect,data){
              .attr("cy",function(d){
                switch (aspect){
                   case "senior":
-                    return d.senior_r * 40;
+                    return d.senior_r * 80;
                   case "benefit":
-                    return d.benefit_r * 40;
+                    return d.benefit_r * 80;
                   case "career":
-                    return d.career_r * 40;
+                    return d.career_r * 80;
                   case "culture":
-                    return d.culture_r * 40;
+                    return d.culture_r * 80;
                   case "overall":
-                    return d.overall_r * 40;
+                    return d.overall_r * 80;
                   case "balance":
-                    return d.balance_r * 40;
+                    return d.balance_r * 80;
                }
              });
 }
