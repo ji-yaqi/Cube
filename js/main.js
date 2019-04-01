@@ -1,5 +1,6 @@
 var data = [];
 var overall_svg;
+var aspects = ["overall","balance","culture","career","benefit","senior"];
 
 d3.csv("data/employee_reviews.csv", function(allData) {
 
@@ -135,17 +136,29 @@ function plotOverallRating(data){
   drawCompanyLinkPath("netflix");
 
   // plot axis
-  var scale = d3.scaleLinear()
-              .domain([0, 5])
-              .range([400, 100]);
+  var x = d3.scaleBand()
+      .rangeRound([0, 800])
+  	  .paddingInner(0.1);
+
+  x.domain(aspects);
+
+  var y = d3.scaleLinear()
+            .domain([0, 5])
+            .range([500, 0]);
 
   var y_axis = d3.axisLeft()
-              .scale(scale);
+                 .scale(y);
+
+  var x_axis = d3.axisBottom()
+                 .scale(x);
 
   overall_svg.append("g")
    .attr("transform", "translate(50, 10)")
    .call(y_axis);
 
+ overall_svg.append("g")
+  .attr("transform", "translate(50, 510)")
+  .call(x_axis);
 
 }
 
@@ -162,17 +175,17 @@ function drawCompanyDots(aspect,data){
              .attr("cx",function(d){
                switch (aspect){
                   case "senior":
-                    return 360;
+                    return 120+130*5;
                   case "benefit":
-                    return 300;
+                    return 120+130*4;
                   case "career":
-                    return 240;
+                    return 120+130*3;
                   case "culture":
-                    return 180;
+                    return 120+130*2;
                   case "overall":
-                    return 60;
-                  case "balance":
                     return 120;
+                  case "balance":
+                    return 120+130;
                }
              })
              .attr("cy",function(d){
