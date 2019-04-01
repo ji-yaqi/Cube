@@ -1,5 +1,6 @@
 var data = [];
 var overall_svg;
+
 d3.csv("data/employee_reviews.csv", function(allData) {
 
   for (var i = 0; i < allData.length; i++) {
@@ -21,7 +22,42 @@ d3.csv("data/employee_reviews.csv", function(allData) {
     data[i] = review;
   }
 
-  // TODO: Replace with real data.
+  //Companies with averaged rating.
+  var reducedData = data.reduce(function(m, d){
+      if(!m[d.company]){
+        m[d.company] = {
+          company:d.company,
+          overall_r:d.overall_r,
+          balance_r:d.balance_r,
+          culture_r:d.culture_r,
+          career_r:d.career_r,
+          benefit_r:d.benefit_r,
+          senior_r:d.senior_r,
+          count: 1};
+        return m;
+      }
+      m[d.company].overall_r += d.overall_r;
+      m[d.company].balance_r += d.balance_r;
+      m[d.company].culture_r += d.culture_r;
+      m[d.company].career_r += d.career_r;
+      m[d.company].benefit_r += d.benefit_r;
+      m[d.company].senior_r += d.senior_r;
+      m[d.company].count += 1;
+      return m;
+   },{});
+   var averageData = Object.keys(reducedData).map(function(k){
+       const item  = reducedData[k];
+       return {
+           company: item.company,
+           overall_r: +(item.overall_r/item.count).toFixed(1),
+           balance_r: +(item.balance_r/item.count).toFixed(1),
+           culture_r: +(item.culture_r/item.count).toFixed(1),
+           career_r: +(item.career_r/item.count).toFixed(1),
+           benefit_r: +(item.benefit_r/item.count).toFixed(1),
+           senior_r: +(item.senior_r/item.count).toFixed(1)
+       }
+  });
+  console.log(averageData)
   // Fake data :
   var averageData = [
     {
