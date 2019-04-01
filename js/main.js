@@ -143,7 +143,7 @@ function plotOverallRating(data){
   x.domain(aspects);
 
   var y = d3.scaleLinear()
-            .domain([0, 5])
+            .domain([3, 5])
             .range([500, 0]);
 
   var y_axis = d3.axisLeft()
@@ -191,17 +191,17 @@ function drawCompanyDots(aspect,data){
              .attr("cy",function(d){
                switch (aspect){
                   case "senior":
-                    return d.senior_r * 80;
+                    return 500-d.senior_r * 80;
                   case "benefit":
-                    return d.benefit_r * 80;
+                    return 500-d.benefit_r * 80;
                   case "career":
-                    return d.career_r * 80;
+                    return 500-d.career_r * 80;
                   case "culture":
-                    return d.culture_r * 80;
+                    return 500-d.culture_r * 80;
                   case "overall":
-                    return d.overall_r * 80;
+                    return 500-d.overall_r * 80;
                   case "balance":
-                    return d.balance_r * 80;
+                    return 500-d.balance_r * 80;
                }
              });
 }

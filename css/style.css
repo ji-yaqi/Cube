@@ -42,3 +42,7 @@
 .netflix {
   stroke: lightblue;
 }
+
+.legend{
+  float:right;
+}
