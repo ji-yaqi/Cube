@@ -76,8 +76,8 @@ d3.csv("data/employee_reviews.csv", function(allData) {
 function plotOverallRating(data){
   overall_svg = d3.select("#overall_rating")
                             .append("svg")
-                            .attr("width",1000)
-                            .attr("height",1000);
+                            .attr("width",800)
+                            .attr("height",600);
 
   drawCompanyDots("overall", data);
   drawCompanyDots("balance", data);
@@ -112,11 +112,11 @@ function plotOverallRating(data){
                  .scale(x);
 
   overall_svg.append("g")
-   .attr("transform", "translate(50, 0)")
+   .attr("transform", "translate(50, 10)")
    .call(y_axis);
 
  overall_svg.append("g")
-  .attr("transform", "translate(50, 500)")
+  .attr("transform", "translate(50, 510)")
   .call(x_axis);
 
 }
@@ -124,7 +124,7 @@ function plotOverallRating(data){
 function drawCompanyDots(aspect,data){
   var ratingScale = d3.scaleLinear()
                 .domain([2.8,5])
-                .range([500, 0]);
+                .range([510, 10]);
 
   overall_svg.append("g")
              .selectAll(".dot")
