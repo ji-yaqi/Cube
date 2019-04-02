@@ -118,7 +118,8 @@ function plotOverallRating(averageData, highlightedCompany){
 
  overall_svg.append("g")
   .attr("transform", "translate(50, 510)")
-  .call(x_axis);
+  .call(x_axis)
+  .style("font-size","15px");
 
 }
 
@@ -170,7 +171,7 @@ function drawCompanyDots(aspect,averageData,highlightedCompany){
              })
              .style("opacity", function(d){
                if (highlightedCompany!= null && d.company != highlightedCompany){
-                 return 0.3;
+                 return 0.1;
                }
              });
 }
@@ -198,12 +199,12 @@ function drawCompanyLinkPath(companyName,highlightedCompany){
              .attr("fill", "none")
              .style("opacity", function(d){
                if (highlightedCompany!= null && companyName != highlightedCompany){
-                 return 0.3;
+                 return 0.1;
                }
              });
 
 }
 
-function companyClick(company){
+function companyEnter(company){
   plotOverallRating(averageData, company);
 }

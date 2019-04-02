@@ -6,8 +6,15 @@ body{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 20%;
+  width: 40%;
   padding-bottom:50px;
+  text-align: center;
+  font-size: 40px;
+  font-family: Impact;
+}
+
+h1{
+  font-size:20px;
   text-align: center;
 }
 
@@ -20,17 +27,17 @@ body{
 }
 
 .dot.amazon{
-  fill: lightgreen;
+  fill: green;
 }
 .amazon{
-  stroke: lightgreen;
+  stroke: green;
 }
 
 .dot.facebook {
-  fill: pink;
+  fill: violet;
 }
 .facebook {
-  stroke: pink;
+  stroke: violet;
 }
 
 .dot.google{
@@ -50,10 +57,10 @@ body{
 }
 
 .dot.netflix{
-  fill: lightblue;
+  fill: steelblue;
 }
 .netflix {
-  stroke: lightblue;
+  stroke: steelblue;
 }
 
 .legend{

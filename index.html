@@ -10,23 +10,24 @@
 
 <body>
   <div class="title"> Find Your Best Fit Company</div>
+  <h1>Please hover on the company label to focus</h1>
   <div class="container">
     <div class="row">
       <div class="col-2">
         <div class="legend">
-          <svg height="120" width="100">
-            <circle cx="10" cy="10" r="8" fill="lightgreen" />
-            <text x="20" y="15" fill="black" onclick="companyClick('amazon')">Amazon</text>
-            <circle cx="10" cy="30" r="8" fill="orange" />
-            <text x="20" y="35" fill="black" onclick="companyClick('apple')">Apple</text>
-            <circle cx="10" cy="50" r="8" fill="pink" />
-            <text x="20" y="55" fill="black" onclick="companyClick('facebook')">Facebook</text>
-            <circle cx="10" cy="70" r="8" fill="blue" />
-            <text x="20" y="75" fill="black" onclick="companyClick('google')">Google</text>
-            <circle cx="10" cy="90" r="8" fill="red" />
-            <text x="20" y="95" fill="black" onclick="companyClick('microsoft')">Microsoft</text>
-            <circle cx="10" cy="110" r="8" fill="lightblue" />
-            <text x="20" y="115" fill="black" onclick="companyClick('netflix')">Netflix</text>
+          <svg height="200" width="100">
+            <circle cx="10" cy="10" r="8" fill="green" />
+            <text x="20" y="15" fill="black" onmouseover="companyEnter('amazon')">Amazon</text>
+            <circle cx="10" cy="40" r="8" fill="orange" />
+            <text x="20" y="45" fill="black" onmouseover="companyEnter('apple')">Apple</text>
+            <circle cx="10" cy="70" r="8" fill="violet" />
+            <text x="20" y="75" fill="black" onmouseover="companyEnter('facebook')">Facebook</text>
+            <circle cx="10" cy="100" r="8" fill="blue" />
+            <text x="20" y="105" fill="black" onmouseover="companyEnter('google')">Google</text>
+            <circle cx="10" cy="130" r="8" fill="red" />
+            <text x="20" y="135" fill="black" onmouseover="companyEnter('microsoft')">Microsoft</text>
+            <circle cx="10" cy="160" r="8" fill="steelblue" />
+            <text x="20" y="165" fill="black" onmouseover="companyEnter('netflix')">Netflix</text>
           </svg>
         </div>
       </div>
