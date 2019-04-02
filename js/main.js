@@ -76,7 +76,7 @@ d3.csv("data/employee_reviews.csv", function(allData) {
 function plotOverallRating(data){
   overall_svg = d3.select("#overall_rating")
                             .append("svg")
-                            .attr("width",800)
+                            .attr("width",900)
                             .attr("height",600);
 
   drawCompanyDots("overall", data);
