@@ -1,7 +1,7 @@
 var data = [];
 var overall_svg;
 var aspects = ["overall","balance","culture","career","benefit","senior"];
-
+var averageData;
 d3.csv("data/employee_reviews.csv", function(allData) {
 
   for (var i = 0; i < allData.length; i++) {
@@ -47,7 +47,7 @@ d3.csv("data/employee_reviews.csv", function(allData) {
       m[d.company].count += 1;
       return m;
    },{});
-   var averageData = Object.keys(reducedData).map(function(k){
+   averageData = Object.keys(reducedData).map(function(k){
        const item  = reducedData[k];
        return {
            company: item.company,
@@ -73,26 +73,27 @@ d3.csv("data/employee_reviews.csv", function(allData) {
 
 });
 
-function plotOverallRating(data){
+function plotOverallRating(averageData, highlightedCompany){
+  d3.select("#overall_rating").selectAll("*").remove();
   overall_svg = d3.select("#overall_rating")
                             .append("svg")
                             .attr("width",900)
                             .attr("height",600);
 
-  drawCompanyDots("overall", data);
-  drawCompanyDots("balance", data);
-  drawCompanyDots("culture", data);
-  drawCompanyDots("career", data);
-  drawCompanyDots("benefit", data);
-  drawCompanyDots("senior", data);
+  drawCompanyDots("overall", averageData, highlightedCompany);
+  drawCompanyDots("balance", averageData, highlightedCompany);
+  drawCompanyDots("culture", averageData, highlightedCompany);
+  drawCompanyDots("career", averageData, highlightedCompany);
+  drawCompanyDots("benefit", averageData, highlightedCompany);
+  drawCompanyDots("senior", averageData, highlightedCompany);
 
   // draw links
-  drawCompanyLinkPath("amazon");
-  drawCompanyLinkPath("microsoft");
-  drawCompanyLinkPath("facebook");
-  drawCompanyLinkPath("apple");
-  drawCompanyLinkPath("google");
-  drawCompanyLinkPath("netflix");
+  drawCompanyLinkPath("amazon",highlightedCompany);
+  drawCompanyLinkPath("microsoft",highlightedCompany);
+  drawCompanyLinkPath("facebook",highlightedCompany);
+  drawCompanyLinkPath("apple",highlightedCompany);
+  drawCompanyLinkPath("google",highlightedCompany);
+  drawCompanyLinkPath("netflix",highlightedCompany);
 
   // plot axis
   var x = d3.scaleBand()
@@ -121,14 +122,14 @@ function plotOverallRating(data){
 
 }
 
-function drawCompanyDots(aspect,data){
+function drawCompanyDots(aspect,averageData,highlightedCompany){
   var ratingScale = d3.scaleLinear()
                 .domain([2.8,5])
                 .range([510, 10]);
 
   overall_svg.append("g")
              .selectAll(".dot")
-             .data(data)
+             .data(averageData)
              .enter()
              .append("circle")
              .attr("class", function(d){
@@ -166,10 +167,15 @@ function drawCompanyDots(aspect,data){
                   case "balance":
                     return ratingScale(d.balance_r);
                }
+             })
+             .style("opacity", function(d){
+               if (highlightedCompany!= null && d.company != highlightedCompany){
+                 return 0.3;
+               }
              });
 }
 
-function drawCompanyLinkPath(companyName){
+function drawCompanyLinkPath(companyName,highlightedCompany){
   var groups = overall_svg.selectAll("."+companyName)._groups[0];
   var dots = [];
   for (var i=0;i<groups.length;i++){
@@ -189,6 +195,15 @@ function drawCompanyLinkPath(companyName){
   overall_svg.append("path")
              .attr("d", lineFunction(dots))
              .attr("class", companyName)
-             .attr("fill", "none");
+             .attr("fill", "none")
+             .style("opacity", function(d){
+               if (highlightedCompany!= null && companyName != highlightedCompany){
+                 return 0.3;
+               }
+             });
 
+}
+
+function companyClick(company){
+  plotOverallRating(averageData, company);
 }
