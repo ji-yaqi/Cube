@@ -208,3 +208,7 @@ function drawCompanyLinkPath(companyName,highlightedCompany){
 function companyEnter(company){
   plotOverallRating(averageData, company);
 }
+
+function companyLeave(){
+  plotOverallRating(averageData);
+}
