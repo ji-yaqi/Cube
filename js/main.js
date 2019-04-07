@@ -2,6 +2,7 @@ var data = [];
 var overall_svg;
 var aspects = ["overall","balance","culture","career","benefit","senior"];
 var averageData;
+
 d3.csv("data/employee_reviews.csv", function(allData) {
 
   for (var i = 0; i < allData.length; i++) {
