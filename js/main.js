@@ -131,10 +131,13 @@ d3.csv("data/employee_reviews.csv", function(allData) {
       };
       companyWithRankingNumber.push(comp);
     }
-    console.log(companyWithRankingNumber);
+    plotCompanyWithRankingsCircle(companyWithRankingNumber);
   }
-
 });
+
+function plotCompanyWithRankingsCircle(companyWithRankingNumber){
+  console.log(companyWithRankingNumber);
+}
 
 function plotOverallRating(averageData, highlightedCompany){
   d3.select("#overall_rating").selectAll("*").remove();
