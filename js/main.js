@@ -64,12 +64,63 @@ d3.csv("data/employee_reviews.csv", function(allData) {
   console.log(averageData);
   plotOverallRating(averageData);
 
+  // Slider info
+  var balanceRange = document.getElementById("balanceRange");
+  var cultureRange = document.getElementById("cultureRange");
+  var careerRange = document.getElementById("careerRange");
+  var benefitRange = document.getElementById("benefitRange");
+  var seniorRange = document.getElementById("seniorRange");
+  var balanceWeight = balanceRange.value;
+  var cultureWeight = cultureRange.value;
+  var careerWeight = careerRange.value;
+  var benefitWeight = benefitRange.value;
+  var seniorWeight = seniorRange.value;
+  calculateWeight();
+
+  balanceRange.oninput = function() {
+    balanceWeight = this.value;
+    calculateWeight();
+  }
+  cultureRange.oninput = function() {
+    cultureWeight = this.value;
+    calculateWeight();
+  }
+  careerRange.oninput = function() {
+    careerWeight = this.value;
+    calculateWeight();
+  }
+  benefitRange.oninput = function() {
+    benefitWeight = this.value;
+    calculateWeight();
+  }
+  seniorRange.oninput = function() {
+    seniorWeight = this.value;
+    calculateWeight();
+  }
+
   function getCity(location){
     return location.split(",")[0];
   }
 
   function getState(location){
     return location.split(",")[1];
+  }
+
+  function calculateWeight(){
+    var companyWithRankingNumber=[];
+    for (var i=0;i<averageData.length;i++){
+      let num = (averageData[i].balance_r * balanceWeight
+              + averageData[i].career_r * careerWeight
+              + averageData[i].culture_r * cultureWeight
+              + averageData[i].senior_r * seniorWeight
+              + averageData[i].benefit_r * benefitWeight)/250.0;
+      let comp = {
+        name: averageData[i].company,
+        index: num
+      };
+      companyWithRankingNumber.push(comp);
+    }
+    console.log(companyWithRankingNumber);
   }
 
 });
@@ -212,47 +263,6 @@ function companyEnter(company){
 
 function companyLeave(){
   plotOverallRating(averageData);
-}
-
-// Slider info
-var balanceRange = document.getElementById("balanceRange");
-var cultureRange = document.getElementById("cultureRange");
-var careerRange = document.getElementById("careerRange");
-var benefitRange = document.getElementById("benefitRange");
-var seniorRange = document.getElementById("seniorRange");
-
-var balanceWeight = balanceRange.value;
-var cultureWeight = cultureRange.value;
-var careerWeight = careerRange.value;
-var benefitWeight = benefitRange.value;
-var seniorWeight = seniorRange.value;
-
-balanceRange.oninput = function() {
-  balanceWeight = this.value;
-  // console.log(balanceWeight);
-}
-cultureRange.oninput = function() {
-  cultureWeight = this.value;
-  // console.log(balanceWeight);
-}
-careerRange.oninput = function() {
-  careerWeight = this.value;
-  // console.log(balanceWeight);
-}
-benefitRange.oninput = function() {
-  benefitWeight = this.value;
-  // console.log(balanceWeight);
-}
-seniorRange.oninput = function() {
-  seniorWeight = this.value;
-  // console.log(balanceWeight);
-}
-
-function calculateWeight(){
-  var companyWithRankingNumber = [
-
-  ];
-
 }
 
 function companyJump(company){
