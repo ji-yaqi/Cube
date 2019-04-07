@@ -250,6 +250,11 @@ seniorRange.oninput = function() {
 
 function calculateWeight(){
   var companyWithRankingNumber = [
-    
+
   ];
+
+}
+
+function companyJump(company){
+    localStorage.setItem("currentCompany",company);
 }
