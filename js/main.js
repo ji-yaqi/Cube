@@ -213,3 +213,43 @@ function companyEnter(company){
 function companyLeave(){
   plotOverallRating(averageData);
 }
+
+// Slider info
+var balanceRange = document.getElementById("balanceRange");
+var cultureRange = document.getElementById("cultureRange");
+var careerRange = document.getElementById("careerRange");
+var benefitRange = document.getElementById("benefitRange");
+var seniorRange = document.getElementById("seniorRange");
+
+var balanceWeight = balanceRange.value;
+var cultureWeight = cultureRange.value;
+var careerWeight = careerRange.value;
+var benefitWeight = benefitRange.value;
+var seniorWeight = seniorRange.value;
+
+balanceRange.oninput = function() {
+  balanceWeight = this.value;
+  // console.log(balanceWeight);
+}
+cultureRange.oninput = function() {
+  cultureWeight = this.value;
+  // console.log(balanceWeight);
+}
+careerRange.oninput = function() {
+  careerWeight = this.value;
+  // console.log(balanceWeight);
+}
+benefitRange.oninput = function() {
+  benefitWeight = this.value;
+  // console.log(balanceWeight);
+}
+seniorRange.oninput = function() {
+  seniorWeight = this.value;
+  // console.log(balanceWeight);
+}
+
+function calculateWeight(){
+  var companyWithRankingNumber = [
+    
+  ];
+}
