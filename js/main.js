@@ -71,30 +71,41 @@ d3.csv("data/employee_reviews.csv", function(allData) {
   var benefitRange = document.getElementById("benefitRange");
   var seniorRange = document.getElementById("seniorRange");
   var balanceWeight = balanceRange.value;
+  document.getElementById("balanceWeight").innerHTML = balanceWeight;
   var cultureWeight = cultureRange.value;
+  document.getElementById("cultureWeight").innerHTML = cultureWeight;
   var careerWeight = careerRange.value;
+  document.getElementById("careerWeight").innerHTML = careerWeight;
   var benefitWeight = benefitRange.value;
+  document.getElementById("benefitWeight").innerHTML = benefitWeight;
   var seniorWeight = seniorRange.value;
+  document.getElementById("seniorWeight").innerHTML = seniorWeight;
+
   calculateWeight();
 
   balanceRange.oninput = function() {
     balanceWeight = this.value;
+    document.getElementById("balanceWeight").innerHTML = balanceWeight;
     calculateWeight();
   }
   cultureRange.oninput = function() {
     cultureWeight = this.value;
+    document.getElementById("cultureWeight").innerHTML = cultureWeight;
     calculateWeight();
   }
   careerRange.oninput = function() {
     careerWeight = this.value;
+    document.getElementById("careerWeight").innerHTML = careerWeight;
     calculateWeight();
   }
   benefitRange.oninput = function() {
     benefitWeight = this.value;
+    document.getElementById("benefitWeight").innerHTML = benefitWeight;
     calculateWeight();
   }
   seniorRange.oninput = function() {
     seniorWeight = this.value;
+    document.getElementById("seniorWeight").innerHTML = seniorWeight;
     calculateWeight();
   }
 
