@@ -213,3 +213,7 @@ function companyEnter(company){
 function companyLeave(){
   plotOverallRating(averageData);
 }
+
+function companyJump(company){
+    localStorage.setItem("currentCompany",company);
+}
