@@ -10,58 +10,67 @@
 
 <body>
   <div class="title"> Find Your Best Fit Company</div>
-  <h1>Please hover on the company label to focus</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-2">
-        <div class="legend">
-          <svg height="200" width="100">
-            <circle cx="10" cy="10" r="8" fill="green" />
-            <text x="20" y="15" fill="black" onmouseover="companyEnter('amazon')" onmouseleave="companyLeave()">Amazon</text>
-            <circle cx="10" cy="40" r="8" fill="orange" />
-            <text x="20" y="45" fill="black" onmouseover="companyEnter('apple')" onmouseleave="companyLeave()">Apple</text>
-            <circle cx="10" cy="70" r="8" fill="violet" />
-            <text x="20" y="75" fill="black" onmouseover="companyEnter('facebook')" onmouseleave="companyLeave()">Facebook</text>
-            <circle cx="10" cy="100" r="8" fill="blue" />
-            <text x="20" y="105" fill="black" onmouseover="companyEnter('google')" onmouseleave="companyLeave()">Google</text>
-            <circle cx="10" cy="130" r="8" fill="red" />
-            <text x="20" y="135" fill="black" onmouseover="companyEnter('microsoft')" onmouseleave="companyLeave()">Microsoft</text>
-            <circle cx="10" cy="160" r="8" fill="steelblue" />
-            <text x="20" y="165" fill="black" onmouseover="companyEnter('netflix')" onmouseleave="companyLeave()">Netflix</text>
-          </svg>
-        </div>
-      </div>
-      <div class="col-10">
-        <div id="overall_rating"></div>
-      </div>
+  <div class=grid>
+    <div class="section-title">
+      <h1> Overall Rating of Companies </h1>
     </div>
-  </div>
-
-  <div id="slider">
-    <div class="slidecontainer">
-      Balance: <span id="balanceWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="balanceRange">
-      Culture: <span id="cultureWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="cultureRange">
-      Career: <span id="careerWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="careerRange">
-      Benefit: <span id="benefitWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="benefitRange">
-      Senior: <span id="seniorWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="seniorRange">
+    <div class="section-title">
+      <h1> Choose your Best Fit</h1>
     </div>
-  </div>
+    <div class="main">
 
-  <div id="sideBar">
-    <a href="company-details.html" onclick="companyJump('amazon')">Amazon</a>
-    <a href="company-details.html" onclick="companyJump('apple')">Apple</a>
-    <a href="company-details.html" onclick="companyJump('facebook')">Facebook</a>
-    <a href="company-details.html" onclick="companyJump('google')">Google</a>
-    <a href="company-details.html" onclick="companyJump('microsoft')">Microsoft</a>
-    <a href="company-details.html" onclick="companyJump('netflix')">Netflix</a>
-  </div>
+      <div class="legend">
+        <h2>legend</h2>
+        <br>
+        <svg height="200" width="100">
+          <circle cx="10" cy="10" r="8" fill="green" />
+          <text x="25" y="15" fill="black" onmouseover="companyEnter('amazon')" onmouseleave="companyLeave()">Amazon</text>
+          <circle cx="10" cy="50" r="8" fill="orange" />
+          <text x="25" y="55" fill="black" onmouseover="companyEnter('apple')" onmouseleave="companyLeave()">Apple</text>
+          <circle cx="10" cy="90" r="8" fill="violet" />
+          <text x="25" y="95" fill="black" onmouseover="companyEnter('facebook')" onmouseleave="companyLeave()">Facebook</text>
+          <circle cx="10" cy="130" r="8" fill="blue" />
+          <text x="25" y="135" fill="black" onmouseover="companyEnter('google')" onmouseleave="companyLeave()">Google</text>
+          <circle cx="10" cy="170" r="8" fill="red" />
+          <text x="25" y="175" fill="black" onmouseover="companyEnter('microsoft')" onmouseleave="companyLeave()">Microsoft</text>
+          <circle cx="10" cy="210" r="8" fill="steelblue" />
+          <text x="25" y="215" fill="black" onmouseover="companyEnter('netflix')" onmouseleave="companyLeave()">Netflix</text>
+        </svg>
+        <br>
+        <label>Please hover on the company label to focus</label>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="js/d3.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/company-details.js"></script>
+      </div>
+      <div id="overall_rating"></div>
+    </div>
+
+    <div id="sidebar">
+      <div class="slidecontainer">
+        Balance: <span id="balanceWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="balanceRange">
+        Culture: <span id="cultureWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="cultureRange">
+        Career: <span id="careerWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="careerRange">
+        Benefit: <span id="benefitWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="benefitRange">
+        Senior: <span id="seniorWeight"></span><input type="range" min="1" max="20" value="10" class="slider" id="seniorRange">
+      </div>
+      <div class="personal_rating"></div>
+    </div>
+    <div>
+
+
+      <div id="sideBar">
+        <a href="company-details.html" onclick="companyJump('amazon')">Amazon</a>
+        <a href="company-details.html" onclick="companyJump('apple')">Apple</a>
+        <a href="company-details.html" onclick="companyJump('facebook')">Facebook</a>
+        <a href="company-details.html" onclick="companyJump('google')">Google</a>
+        <a href="company-details.html" onclick="companyJump('microsoft')">Microsoft</a>
+        <a href="company-details.html" onclick="companyJump('netflix')">Netflix</a>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="js/d3.min.js"></script>
+      <script src="js/main.js"></script>
+      <script src="js/company-details.js"></script>
 </body>
 
 </html>
