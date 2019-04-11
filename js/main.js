@@ -138,11 +138,9 @@ d3.csv("data/employee_reviews.csv", function(allData) {
 });
 
 function plotCompanyWithRankingsCircle(companyWithRankingNumber) {
-  console.log(companyWithRankingNumber);
   companyWithRankingNumber.sort(function(x, y) {
     return d3.ascending(y.index, x.index);
   });
-  console.log(companyWithRankingNumber);
 
   d3.select(".personal_rating").selectAll("svg").remove();
   var personal_svg = d3.select(".personal_rating").append("svg")
@@ -212,79 +210,17 @@ function plotCompanyWithRankingsCircle(companyWithRankingNumber) {
     .on("click", function(d) {
       return companyJump(d.name);
     })
-
-
-
-  // var simulation = d3.forceSimulation(companyWithRankingNumber)
-  //   .force("charge", d3.forceManyBody().strength([-20]))
-  //   .force("x", d3.forceX())
-  //   .force("y", d3.forceY())
-  //   .on("tick", ticked);
-  //
-  // function ticked(d) {
-  //   node.attr("cx", function(d) {
-  //       return d.x * 3 + 130;
-  //     })
-  //     .attr("cy", function(d) {
-  //       return d.y * 3 + 130;
-  //     });
-  //   textt.attr("x", function(d) {
-  //       return d.x * 3 + 400;
-  //     })
-  //     .attr("y", function(d) {
-  //       return d.y * 3 + 350;
-  //     });
-  //   num.attr("x", function(d) {
-  //       return d.x * 3 + 400;
-  //     })
-  //     .attr("y", function(d) {
-  //       return d.y * 3 + 320;
-  //     });
-  // }
-  //
-  // // creating bubble chart
-  // var node = personal_svg.selectAll("circle")
-  //   .data(companyWithRankingNumber)
-  //   .enter()
-  //   .append("circle")
-  //   .attr("r", function(d) {
-  //     return d.index * 3 + 20;
-  //   })
-  //   .attr("class", function(d) {
-  //     return "dot " + d.name;
-  //   })
-  //
-  // var textt = personal_svg.selectAll("text")
-  //   .data(companyWithRankingNumber)
-  //   .enter()
-  //   .append("text")
-  //   .text(function(d) {
-  //     return d.name;
-  //   })
-  //   .style("font-size", function(d) {
-  //     return d.index *2+10;
-  //   })
-  //   .style("text-anchor", "middle")
-  //
-  // var num = personal_svg.append("g").selectAll("text")
-  //   .data(companyWithRankingNumber)
-  //   .enter()
-  //   .append("text")
-  //   .text(function(d) {
-  //     return d.index;
-  //   })
-  //   .style("font-size", "10px")
-  //   .style("font-weight", "bold")
-  //   .style("text-anchor", "middle")
-
 }
 
 function plotOverallRating(averageData, highlightedCompany) {
   d3.select("#overall_rating").selectAll("*").remove();
+  var w = 1/window.innerWidth *1700000;
+  let h = "0 0 " + w + " " + w*2.0/3;
   overall_svg = d3.select("#overall_rating")
     .append("svg")
     .attr("width", 900)
-    .attr("height", 600);
+    .attr("height", 600)
+    .attr("viewBox", h);
 
   drawCompanyDots("overall", averageData, highlightedCompany);
   drawCompanyDots("balance", averageData, highlightedCompany);
