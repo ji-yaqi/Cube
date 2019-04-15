@@ -1,3 +1,10 @@
+var myFullpage = new fullpage('#fullpage', {
+	//options here
+	autoScrolling:true,
+	scrollHorizontally: true
+});
+
+
 var data = [];
 var overall_svg;
 var aspects = ["overall", "balance", "culture", "career", "benefit", "senior"];
