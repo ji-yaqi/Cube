@@ -227,7 +227,8 @@ function plotOverallRating(averageData, highlightedCompany) {
     .append("svg")
     .attr("width", 900)
     .attr("height", 600)
-    .attr("viewBox", h);
+    .attr("viewBox", h)
+		.attr("z-index", 0);
 
   drawCompanyDots("overall", averageData, highlightedCompany);
   drawCompanyDots("balance", averageData, highlightedCompany);

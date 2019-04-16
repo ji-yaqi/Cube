@@ -135,6 +135,7 @@ button, a{
   float: right;
   margin-top: auto;
   margin-bottom: auto;
+  z-index: 6;
 }
 
 .overall_rating {
